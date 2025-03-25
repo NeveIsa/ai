@@ -4,7 +4,7 @@ import plotext as plt
 grid = np.zeros((8, 8))
 
 START = 1
-STOP = 100
+STOP = 80
 OBSTACLE = 50
 
 start = [5, 3]

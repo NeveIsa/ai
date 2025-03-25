@@ -1,7 +1,8 @@
 from games import gridgame as gg
 from search.algos import bfs, dfs
 import plotext as plt
-import numpy as np
+from time import sleep
+from fire import Fire
 
 G = gg.Graph(gg.grid)
 
@@ -9,20 +10,28 @@ G = gg.Graph(gg.grid)
 
 
 def goalfn(node):
-    print(node)
     if node == (0, 7):
         return True
     else:
         return False
 
 
-out = bfs(G, start=(4, 2), goalfn=goalfn)
+def main(algo):
+    if algo == "bfs":
+        algo = bfs
+    elif algo == "dfs":
+        algo = dfs
 
-grid = gg.grid
+    out = algo(G, start=(4, 2), goalfn=goalfn)
+    grid = gg.grid
 
-for i in range(len(out)):
-    for o in out[:i]:
-        grid[o[0], o[1]] = 200
-    print(grid.T)
-    plt.heatmap(np.eye(3))
-    input()
+    for i in range(len(out)):
+        for o in out[: i + 1]:
+            grid[o[0], o[1]] = 100
+        # print(grid.T)
+        plt.matrix_plot(grid.T.tolist())
+        plt.show()
+        sleep(0.2)
+
+
+Fire(main)
