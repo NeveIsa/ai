@@ -1,0 +1,5 @@
+networkx
+plotext
+numpy
+networkx
+fire
