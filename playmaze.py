@@ -1,10 +1,10 @@
-from games import gridgame as gg
+from games import maze
 from search.algos import bfs, dfs
 import plotext as plt
 from time import sleep
 from fire import Fire
 
-G = gg.Graph(gg.grid)
+G = maze.Graph(maze.grid)
 
 # print(G.neighbors((4, 2)))
 
@@ -23,7 +23,7 @@ def main(algo):
         algo = dfs
 
     out = algo(G, start=(4, 2), goalfn=goalfn)
-    grid = gg.grid
+    grid = maze.grid
 
     for i in range(len(out)):
         for o in out[: i + 1]:
